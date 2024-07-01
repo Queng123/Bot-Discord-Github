@@ -2,10 +2,10 @@
   "name": "bot-discord-github",
   "version": "1.0.0",
   "description": "Github notifications on Discord, for one repository",
-  "main": "bot.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
