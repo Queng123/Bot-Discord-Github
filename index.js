@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const CHANNEL_ID = process.env.CHANNEL_ID;
 
@@ -27,7 +27,7 @@ app.post('/github-webhook', (req, res) => {
         if (payload.action === 'opened') {
             const prTitle = payload.pull_request.title;
             const prUrl = payload.pull_request.html_url;
-            const message = `Nouvelle Pull Request: [${prTitle}](${prUrl})`;
+            const message = `@everyone Nouvelle Pull Request: [${prTitle}](${prUrl})`;
 
             client.channels.fetch(CHANNEL_ID)
                 .then(channel => channel.send(message))
