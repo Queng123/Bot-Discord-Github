@@ -13,12 +13,10 @@ const client = new Client({
 });
 
 client.login(DISCORD_TOKEN);
+console.log('Bot en cours de connexion...');
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
 
 app.post('/github-webhook', (req, res) => {
     try {
