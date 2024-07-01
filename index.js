@@ -18,29 +18,28 @@ console.log('Bot en cours de connexion...');
 app.use(bodyParser.json());
 
 
-app.post('/github-webhook', (req, res) => {
+app.post('/github-webhook', async (req, res) => {
     try {
         const payload = req.body;
 
         if (payload.action === 'opened') {
             const prTitle = payload.pull_request.title;
             const prUrl = payload.pull_request.html_url;
-            const message = `@everyone Nouvelle Pull Request: [${prTitle}](${prUrl})`;
+            const message = `@everyone New Pull Request: [${prTitle}](${prUrl})`;
 
-            client.channels.fetch(CHANNEL_ID)
-                .then(channel => channel.send(message))
-                .catch(error => {
-                    console.error('Error sending message to Discord:', error);
-                    res.status(500).send('Error processing webhook.');
-                });
+            const channel = await client.channels.fetch(CHANNEL_ID);
+            await channel.send(message);
+
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(200);
         }
-
-        res.sendStatus(200);
     } catch (error) {
         console.error('Error processing webhook request:', error);
-        res.status(400).send('Invalid webhook request.');
+        res.status(500).send('Error processing webhook.');
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Serveur en écoute sur le port ${PORT}`);
