@@ -16,6 +16,10 @@ client.login(DISCORD_TOKEN);
 
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 app.post('/github-webhook', (req, res) => {
     const payload = req.body;
 
