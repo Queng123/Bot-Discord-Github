@@ -13,6 +13,9 @@ Github notifications on Discord, currently only for pull requests
 5. Deploy the project on vercel
 6. On the target repository, go to `Settings` > `Webhooks` > `Add webhook`
 7. Set the `Payload URL` to the url of your vercel project, with the path `github-webhook`
+8. Enable the `Pull requests` event
+9. Add the webhook
+10. You're done! You should now receive notifications on discord when a pull request is created
 
 ## Usage
 
