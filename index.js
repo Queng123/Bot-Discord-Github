@@ -13,7 +13,6 @@ const client = new Client({
 });
 
 client.login(DISCORD_TOKEN);
-console.log('Bot en cours de connexion...');
 
 app.use(bodyParser.json());
 
@@ -42,7 +41,7 @@ app.post('/github-webhook', async (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`Serveur en écoute sur le port ${PORT}`);
+    console.log(`Listening on port ${PORT}`);
 });
 
 module.exports = app;
