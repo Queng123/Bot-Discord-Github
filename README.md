@@ -1,6 +1,6 @@
 # Bot-Discord-Github
 
-Github notifications on Discord, for one repository
+Github notifications on Discord, currently only for pull requests
 
 ## Installation
 
