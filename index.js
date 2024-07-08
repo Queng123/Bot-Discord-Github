@@ -30,11 +30,11 @@ app.post('/github-webhook', async (req, res) => {
             let pingList = "";
             for (const key in userList) {
                 if (key != prUser) {
-                    pingList += `@${userList[key]} `
+                    pingList += `<@${userList[key].replace('_', '\\_')}> `
                 }
             }
 
-            const message = `|| ${pingList} ||
+            const message = `${pingList}
 New Pull Request: [${prTitle}](${prUrl})`;
 
             const channel = await client.channels.fetch(CHANNEL_ID);

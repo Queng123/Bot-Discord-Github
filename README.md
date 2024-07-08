@@ -13,7 +13,7 @@ Github notifications on Discord, currently only for pull requests
 5. On vercel, create a `Edge Config Store`, with a schema for each of your user like:
    ```json
    {
-     "github_username": "discord_username",
+     "github_username": "discord_user_id",
    }
    ```
     This will allow the bot to mention the users who not created the pull reques.
