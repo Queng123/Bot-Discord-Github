@@ -26,7 +26,7 @@ app.post('/github-webhook', async (req, res) => {
         if (payload.action === 'opened') {
             const prTitle = payload.pull_request.title;
             const prUrl = payload.pull_request.html_url;
-            const prUser = payload.pull_request.user;   
+            const prUser = payload.pull_request.user.login;
             let pingList = "";
             for (const key in userList) {
                 if (key != prUser) {
@@ -37,8 +37,8 @@ app.post('/github-webhook', async (req, res) => {
             const message = `${pingList}
 New Pull Request: [${prTitle}](${prUrl})`;
 
-            // const channel = await client.channels.fetch(CHANNEL_ID);
-            // await channel.send(message);
+            const channel = await client.channels.fetch(CHANNEL_ID);
+            await channel.send(message);
 
             res.sendStatus(200);
         } else {
