@@ -27,7 +27,7 @@ Github notifications on Discord, currently only for pull requests
 
 ## Usage
 
-When a new commit is pushed to the repository, a notification will be sent to the discord channel
+When a new PR is created on the repository, a notification will be sent to the discord channel
 
 ## License
 
