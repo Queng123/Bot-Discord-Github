@@ -33,7 +33,6 @@ app.post('/github-webhook', async (req, res) => {
                     pingList += `<@${userList[key].replace('_', '\\_')}> `
                 }
             }
-            console.log(prUser);
             const message = `${pingList}
 New Pull Request: [${prTitle}](${prUrl})`;
 
