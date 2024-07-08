@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const { get } = require('@vercel/edge-config');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,11 +21,21 @@ app.use(bodyParser.json());
 app.post('/github-webhook', async (req, res) => {
     try {
         const payload = req.body;
+        const userList = await get('users');
 
         if (payload.action === 'opened') {
             const prTitle = payload.pull_request.title;
             const prUrl = payload.pull_request.html_url;
-            const message = `@everyone New Pull Request: [${prTitle}](${prUrl})`;
+            const prUser = payload.pull_request.user;   
+            let pingList = "";
+            for (const key in userList) {
+                if (key != prUser) {
+                    pingList += `@${userList[key]} `
+                }
+            }
+
+            const message = `|| ${pingList} ||
+New Pull Request: [${prTitle}](${prUrl})`;
 
             const channel = await client.channels.fetch(CHANNEL_ID);
             await channel.send(message);
